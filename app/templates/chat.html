@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<h1>Chat with another user!</h1>
+
+	<form action="" method="post" name="roomname">
+		{{ form.hidden_tag() }}
+		<p>
+			Enter a roomname:<br>
+			{{ form.roomname(size=50) }}<br>
+
+			Enter a password or leave blank for open room:<br>
+			{{ form.roomkey }}<br>
+		</p>
+		<p><input type="submit" name="Create/Join"></p>
+	</form>
+
+{% endblock %}

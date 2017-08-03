@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Shoot. You're not logged in!</h1>
+	<p>You tried to access top secret info that only logged in users are able to see. You can click <a href="{{ url_for('login') }}">here</a> to remedy that.</p>
+{% endblock %}

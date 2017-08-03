@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+	<head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='login.css')}}">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+
+	{% if current_user.is_authenticated %}
+		<div class="jumbotron">
+			<h1 class="display-3">You're already logged in!</h1>
+			<p>Click <a href="{{ url_for('home') }}">here</a> to go back home.</p>
+		</div>
+	{% else %}
+		<div class="jumbotron" align="center">
+			<h1 class="display-4">Select a login provider</h1>
+		</div>
+
+		<div class="row justify-content-md-center">
+			<div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" align="center">
+				<a href="{{ url_for('oauth_authorize', provider='facebook') }}" class="btn azm-social azm-btn azm-border-bottom azm-facebook"><i class="fa fa-facebook"></i> Log in with Facebook</a>
+			</div>
+			
+			<div class="col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2"></div>
+
+			<div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4" align="center">
+				<a href="{{ url_for('oauth_authorize', provider='facebook') }}" class="btn azm-social azm-btn azm-border-bottom azm-google"><i class="fa fa-google"></i> Log in with Google</a>
+			</div>
+
+		</div>
+	{% endif %}
+{% endblock %}
