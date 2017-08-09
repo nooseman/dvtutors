@@ -2390,3 +2390,80 @@ TypeError: remove_room() missing 1 required positional argument: 'roomname'
 2017-08-05 10:26:11,830 INFO: tutor startup [in C:\Users\jackm\Desktop\tutor\app\__init__.py:44]
 2017-08-05 10:26:13,749 INFO: tutor startup [in C:\Users\jackm\Desktop\tutor\app\__init__.py:44]
 2017-08-06 12:48:28,975 INFO: tutor startup [in C:\Users\jackm\Desktop\tutor\app\__init__.py:44]
+2017-08-08 22:29:24,146 INFO: tutor startup [in C:\Users\jackm\Desktop\tutor\app\__init__.py:45]
+2017-08-08 22:29:26,249 ERROR: Exception on / [GET] [in C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask\app.py:1560]
+Traceback (most recent call last):
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1182, in _execute_context
+    context)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\engine\default.py", line 470, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: users
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask\app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask\app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask\app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask\_compat.py", line 33, in reraise
+    raise value
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask\app.py", line 1612, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask\app.py", line 1598, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "C:\Users\jackm\Desktop\tutor\app\views.py", line 21, in home
+    user=g.user)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask\templating.py", line 132, in render_template
+    ctx.app.update_template_context(context)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask\app.py", line 764, in update_template_context
+    context.update(func())
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask_login\utils.py", line 335, in _user_context_processor
+    return dict(current_user=_get_user())
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask_login\utils.py", line 302, in _get_user
+    current_app.login_manager._load_user()
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask_login\login_manager.py", line 311, in _load_user
+    return self._load_from_cookie(request.cookies[cookie_name])
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask_login\login_manager.py", line 350, in _load_from_cookie
+    self.reload_user()
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\flask_login\login_manager.py", line 279, in reload_user
+    user = self.user_callback(user_id)
+  File "C:\Users\jackm\Desktop\tutor\app\__init__.py", line 35, in load_user
+    return User.query.get(int(id))
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\orm\query.py", line 864, in get
+    return self._get_impl(ident, loading.load_on_ident)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\orm\query.py", line 897, in _get_impl
+    return fallback_fn(self, key)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\orm\loading.py", line 223, in load_on_ident
+    return q.one()
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2814, in one
+    ret = self.one_or_none()
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2784, in one_or_none
+    ret = list(self)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2855, in __iter__
+    return self._execute_and_instances(context)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\orm\query.py", line 2878, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\engine\base.py", line 945, in execute
+    return meth(self, multiparams, params)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\sql\elements.py", line 263, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1053, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1189, in _execute_context
+    context)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1402, in _handle_dbapi_exception
+    exc_info
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\util\compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\util\compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\engine\base.py", line 1182, in _execute_context
+    context)
+  File "C:\Users\jackm\Desktop\tutor\flask\lib\site-packages\sqlalchemy\engine\default.py", line 470, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: users [SQL: 'SELECT users.id AS users_id, users.social_id AS users_social_id, users.nickname AS users_nickname, users.email AS users_email, users.about_me AS users_about_me, users.profile_picture_url AS users_profile_picture_url, users.last_room_password AS users_last_room_password, users.auth_provider AS users_auth_provider, users.total_time_online AS users_total_time_online \nFROM users \nWHERE users.id = ?'] [parameters: (2,)]
+2017-08-08 22:30:00,762 INFO: tutor startup [in C:\Users\jackm\Desktop\tutor\app\__init__.py:45]
+2017-08-08 22:30:08,429 INFO: tutor startup [in C:\Users\jackm\Desktop\tutor\app\__init__.py:45]
