@@ -11,14 +11,14 @@ class User(db.Model, UserMixin):
 	__tablename__ = 'users'
 	id = db.Column(db.Integer, primary_key=True)
 	social_id = db.Column(db.String(256), nullable=False, unique=True)
-	nickname = db.Column(db.String(64), nullable=False, unique=True)
-	email = db.Column(db.String(64), nullable=True)
+	nickname = db.Column(db.String(256), nullable=False, unique=True)
+	email = db.Column(db.String(256), nullable=True)
 	about_me = db.Column(db.String(256), nullable=True)
 	profile_picture_url = db.Column(db.String(256), nullable=True)
 	
 	last_room_password = db.Column(db.String(64), nullable=True)
 
-	auth_provider = db.Column(db.String(64), nullable=False)
+	auth_provider = db.Column(db.String(256), nullable=False)
 	total_time_online = db.Column(db.DateTime, nullable=True)
 	approved_rooms = db.relationship('Room', secondary = UserRoom, backref='User', lazy='dynamic')
 
