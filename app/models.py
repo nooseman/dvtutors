@@ -10,8 +10,8 @@ UserRoom = db.Table('UserRoom',
 class User(db.Model, UserMixin):
 	__tablename__ = 'users'
 	id = db.Column(db.Integer, primary_key=True)
-	social_id = db.Column(db.String(256), nullable=False, unique=True)
-	nickname = db.Column(db.String(256), nullable=False, unique=True)
+	social_id = db.Column(db.String(128), nullable=False, unique=True)
+	nickname = db.Column(db.String(128), nullable=False, unique=True)
 	email = db.Column(db.String(256), nullable=True)
 	about_me = db.Column(db.String(256), nullable=True)
 	profile_picture_url = db.Column(db.String(256), nullable=True)
