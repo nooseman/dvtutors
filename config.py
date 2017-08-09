@@ -29,4 +29,4 @@ if os.environ.get('DATABASE_URL') is None:
 	CELERY_BROKER_URL, CELERY_BACKEND = 'redis://localhost:6379'
 	#CELERY_BACKEND = 'redis://localhost:6379'
 else:
-	CELERY_BROKER_URL, CELERY_BACKEND = os.environ['DATABASE_URL']
+	CELERY_BROKER_URL, CELERY_BACKEND = os.environ['REDIS_URL']
