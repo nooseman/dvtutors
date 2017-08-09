@@ -85,7 +85,8 @@ def chat():
 			room = Room(roomname=form.roomname.data, password=form.roomkey.data, created_time=datetime.utcnow())
 
 			#delete room in 14400s (4 hours)
-			remove_room.apply_async(args=[room.roomname], countdown=14400)			
+			#remove_room.apply_async(args=[room.roomname], countdown=14400)
+			remove_room.apply_async(args=[room.roomname], countdown=10)	
 
 			db.session.add(room)
 		#the room does exist

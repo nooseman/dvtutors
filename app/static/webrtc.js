@@ -1,5 +1,6 @@
 var webrtc = new SimpleWebRTC({
 	localVideoEl: 'localVideo',
 	remoteVideosEl: 'remotesVideos',
-	autoRequestMedia: true
+	autoRequestMedia: true,
+	enableDataChannels: true
 });

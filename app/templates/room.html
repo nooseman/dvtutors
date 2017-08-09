@@ -13,6 +13,15 @@
 			webrtc.joinRoom("{{ roomname }}");
 			console.log('joined room');
 		});
+
+		/*
+		Pseudocode:
+
+		canvas.on('shapeCompleted', function() {
+			webrtc.sendDirectlyToAll(channelname, 'event', json_state)
+		})
+		
+		*/
 	</script>
 	<body>
 		<video height="300" id="localVideo"></video>
