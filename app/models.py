@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
 	nickname = db.Column(db.String(64), nullable=False, unique=True)
 	email = db.Column(db.String(64), nullable=True)
 	about_me = db.Column(db.String(256), nullable=True)
-	profile_picture_url = db.Column(db.String(64), nullable=True)
+	profile_picture_url = db.Column(db.String(256), nullable=True)
 	
 	last_room_password = db.Column(db.String(64), nullable=True)
 
