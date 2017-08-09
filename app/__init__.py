@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin
 from celery import Celery
+import os
 
 def make_celery(app):
 	celery = Celery(app.import_name, backend=app.config['CELERY_BACKEND'],
