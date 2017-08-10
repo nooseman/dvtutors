@@ -6,8 +6,8 @@
 
 ## What should be done
 
-1. 
-2. 
-3. 
+1. Add fabric.js whiteboard
+2. Add FAQ
+3. Beautify
 4. 
 5. 
