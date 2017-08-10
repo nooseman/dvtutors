@@ -103,6 +103,12 @@ def chat():
 							title='Chat',
 							form=form)
 
+@app.route('/list')
+@login_required
+def list():
+	rooms = Room.query.all()
+	return render_template('list.html', rooms=rooms)
+
 '''
 TODO:
 
