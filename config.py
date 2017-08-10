@@ -26,7 +26,8 @@ OAUTH_CREDENTIALS = {
 }
 
 if os.environ.get('DATABASE_URL') is None:
-	CELERY_BROKER_URL, CELERY_BACKEND = 'redis://localhost:6379'
-	#CELERY_BACKEND = 'redis://localhost:6379'
+	CELERY_BROKER_URL = 'redis://localhost:6379'
+	CELERY_BACKEND = 'redis://localhost:6379'
 else:
-	CELERY_BROKER_URL, CELERY_BACKEND = os.environ['REDIS_URL']
+	CELERY_BROKER_URL = os.environ['REDIS_URL']
+	CELERY_BACKEND = os.environ['REDIS_URL']
