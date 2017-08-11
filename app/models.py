@@ -20,7 +20,8 @@ class User(db.Model, UserMixin):
 
 	auth_provider = db.Column(db.String(256), nullable=False)
 	total_time_online = db.Column(db.DateTime, nullable=True)
-	approved_rooms = db.relationship('Room', secondary = UserRoom, backref='User', lazy='dynamic')
+	#approved_rooms = db.relationship('Room', secondary = UserRoom, backref='User', lazy='dynamic')
+	approved_rooms = db.relationship('Room', secondary = UserRoom, lazy='dynamic')
 
 	@staticmethod
 	def make_unique_nickname(nickname):
