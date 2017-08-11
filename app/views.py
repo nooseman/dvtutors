@@ -109,6 +109,10 @@ def list():
 	rooms = Room.query.all()
 	return render_template('list.html', rooms=rooms)
 
+@app.route('/about')
+def about():
+	return render_template('about.html')
+
 '''
 TODO:
 
