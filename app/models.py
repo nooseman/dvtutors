@@ -3,8 +3,8 @@ from flask_login import UserMixin
 
 UserRoom = db.Table('UserRoom',
 	db.Column('id', db.Integer, primary_key=True),
-	db.Column('userId', db.Integer, db.ForeignKey('users.id'), cascade="all,delete", ondelete="CASCADE"),
-	db.Column('roomId', db.Integer, db.ForeignKey('rooms.id'), cascade="all,delete", ondelete="CASCADE"),
+	db.Column('userId', db.Integer, db.ForeignKey('users.id')),
+	db.Column('roomId', db.Integer, db.ForeignKey('rooms.id')),
 	db.Column('creationTime', db.DateTime))
 
 class User(db.Model, UserMixin):
@@ -20,7 +20,8 @@ class User(db.Model, UserMixin):
 
 	auth_provider = db.Column(db.String(256), nullable=False)
 	total_time_online = db.Column(db.DateTime, nullable=True)
-	approved_rooms = db.relationship('Room', secondary = UserRoom, backref='User', lazy='dynamic')
+	#approved_rooms = db.relationship('Room', secondary = UserRoom, backref='User', lazy='dynamic')
+	approved_rooms = db.relationship('Room', secondary = UserRoom, lazy='dynamic')
 
 	@staticmethod
 	def make_unique_nickname(nickname):
