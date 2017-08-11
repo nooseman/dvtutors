@@ -6,7 +6,7 @@ def remove_room(roomname):
 	room = models.Room.query.filter_by(roomname=roomname)
 	room.approved_users = []
 
-	users = models.User.query.filter_by(room in approved_rooms).all()
+	users = models.User.query.filter(models.User.approved_users.any(roomname=roomname)).all()
 	for user in users:
 		user.approved_rooms.remove(room)
 
@@ -14,3 +14,5 @@ def remove_room(roomname):
 	db.session.commit()
 
 	return 'Room ' + roomname + ' deleted.'
+
+
