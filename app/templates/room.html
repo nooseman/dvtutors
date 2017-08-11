@@ -1,31 +1,39 @@
 {% extends "base.html" %}
 {% block content %}
+<head>
+	<script src="https://simplewebrtc.com/latest-v2.js"></script>
+</head>
+
+	<body>
 
 	<p>You've entered room {{ roomname }}</p>
 
-	<head>
-		<script src="https://simplewebrtc.com/latest-v2.js"></script>
-	</head>
+	<br>
 
-	<script src="{{ url_for('static', filename='webrtc.js') }}"></script>
-	<script type="text/javascript">
-		webrtc.on('readyToCall', function () {
-			webrtc.joinRoom("{{ roomname }}");
-			console.log('joined room');
-		});
+	<video height="300" id="localVideo"></video>
+	<div id="remotesVideos"></div>
 
-		/*
-		Pseudocode:
+	<br>
 
-		canvas.on('shapeCompleted', function() {
-			webrtc.sendDirectlyToAll(channelname, 'event', json_state)
-		})
-		
-		*/
-	</script>
-	<body>
-		<video height="300" id="localVideo"></video>
-		<div id="remotesVideos"></div>
+
 	</body>
+
+
+<script src="{{ url_for('static', filename='webrtc.js') }}"></script>
+<script type="text/javascript">
+	webrtc.on('readyToCall', function () {
+		webrtc.joinRoom("{{ roomname }}");
+		console.log('joined room');
+	});
+
+	/*
+	Pseudocode:
+
+	canvas.on('shapeCompleted', function() {
+		webrtc.sendDirectlyToAll(channelname, 'event', json_state)
+	})
+		
+	*/
+</script>
 
 {% endblock %}
