@@ -4,8 +4,6 @@ SECRET_KEY = "Ya/g+!y3/s>~D[d)S67U4Ew/IiDaq+"
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-SEND_FILE_MAX_AGE_DEFAULT = 0
-
 #location of database file
 if os.environ.get('DATABASE_URL') is None:
 	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
