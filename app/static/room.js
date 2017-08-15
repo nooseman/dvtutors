@@ -40,6 +40,9 @@ $(document).ready(function() {
 
     var room_id = window.location.href.match(/[^\/]*$/);
     //var room_id = prompt('Room?');
+
     connection.openOrJoin(room_id);
+
+    console.log('Joined room: ' + room_id);
     
 });
