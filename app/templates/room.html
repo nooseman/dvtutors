@@ -1,40 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
 <head>
-<script src="https://simplewebrtc.com/latest-v2.js"></script>
-<style>
-	div {
-		display: inline-block;
-	}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js" integrity="sha256-sdmLD9jD1PIzq3KOQPNSGZYxjv76rds79Mnyk5JNp1M=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-	#remotesVideos video {
-		height: 400px;
-		width: auto;
-	}
-
-</style>
+    <script src="https://rtcmulticonnection.herokuapp.com/dist/RTCMultiConnection.min.js"></script>
 </head>
-
-	<body>
-
+<body>
 	<h1>You've entered room {{ roomname }}</h1>
 
 	<br>
 
-	<video height="300" id="localVideo"></video>
-
-	<br>
-
+	<div id="localVideos"></div>
+	<hr>
 	<div id="remotesVideos"></div>
 
-	<br>
-
-	<p> To check the place for fun </p>
-
-
-	</body>
+	<script src="{{ url_for('static', filename='room.js') }}"></script>
+</body>
 
 
+<!--
+<script src="https://simplewebrtc.com/latest-v2.js"></script>
 <script src="{{ url_for('static', filename='webrtc.js') }}"></script>
 <script type="text/javascript">
 	webrtc.on('readyToCall', function () {
@@ -51,5 +37,5 @@
 		
 	*/
 </script>
-
+-->
 {% endblock %}
