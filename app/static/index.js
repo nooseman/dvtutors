@@ -1,8 +1,8 @@
 $(document).ready(function() {
     var connection = new RTCMultiConnection();
 
-    //connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
-    connection.socketURL = "https://localhost:9001/";
+    connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+    //connection.socketURL = "https://localhost:9001/";
     //connection.socketURL = 'https://dvsignal.herokuapp.com:443/'
 
     connection.iceServers = [];
