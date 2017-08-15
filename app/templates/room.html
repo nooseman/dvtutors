@@ -23,24 +23,4 @@
 	<script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 
-
-<!--
-<script src="https://simplewebrtc.com/latest-v2.js"></script>
-<script src="{{ url_for('static', filename='webrtc.js') }}"></script>
-<script type="text/javascript">
-	webrtc.on('readyToCall', function () {
-		webrtc.joinRoom("{{ roomname }}");
-		console.log('joined room');
-	});
-
-	/*
-	Pseudocode:
-
-	canvas.on('shapeCompleted', function() {
-		webrtc.sendDirectlyToAll(channelname, 'event', json_state)
-	})
-		
-	*/
-</script>
--->
 {% endblock %}
