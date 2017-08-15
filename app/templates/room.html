@@ -6,6 +6,9 @@
 <body>
     <h1>You've entered room {{ roomname }}</h1>
 
+    <h1>This page is updated!</h1>
+
+
     <br>
 
     <div id="localVideos"></div>
@@ -15,7 +18,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js" integrity="sha256-sdmLD9jD1PIzq3KOQPNSGZYxjv76rds79Mnyk5JNp1M=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='index.js') }}"></script>
+    <script src="{{ url_for('static', filename='room.js') }}"></script>
     <script src="{{ url_for('static', filename='rtcmulticonnection.js')}}"></script>
 </body>
 
