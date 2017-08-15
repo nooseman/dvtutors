@@ -38,8 +38,8 @@ $(document).ready(function() {
         document.getElementById('incoming-messages').appendChild(event.data);
     };
 
-    //var room_id = window.location.href.match(/[^\/]*$/);
-    var room_id = prompt('Room?');
+    var room_id = window.location.href.match(/[^\/]*$/);
+    //var room_id = prompt('Room?');
     connection.openOrJoin(room_id);
     
 });
