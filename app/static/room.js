@@ -39,6 +39,7 @@ $(document).ready(function() {
     };
 
     var room_id = window.location.href.match(/[^\/]*$/);
+    console.log('Room_id is: ' + room_id);
     //var room_id = prompt('Room?');
 
     connection.openOrJoin(room_id);
