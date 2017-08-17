@@ -122,7 +122,9 @@ def list():
 		tdelta = datetime.utcnow() - room.created_time
 		ages.append((app.config['ROOM_TTL'] - tdelta.seconds) // 60)
 	
-	return render_template('list.html', room_age=zip(rooms, ages), ttl=(app.config['ROOM_TTL']//60))
+	return render_template('list.html', room_age=zip(rooms, ages), 
+							ttl=(app.config['ROOM_TTL']//60),
+							num_rooms=len(rooms))
 
 @app.route('/about')
 def about():
