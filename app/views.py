@@ -117,10 +117,7 @@ def list():
 		rooms = Room.query.all()
 
 	ages = []
-	# time to live counters for each room
 	for room in rooms:
-		#tdelta = datetime.utcnow() - room.created_time
-		#ages.append((app.config['ROOM_TTL'] - tdelta.seconds) // 60)
 		ages.append(time_to_live(room))
 
 	return render_template('list.html', room_age=zip(rooms, ages), 
@@ -143,7 +140,8 @@ def room(roomname):
 
 		return render_template('room.html',
 								title='Chat',
-								room=room)
+								room=room,
+								ttl=time_to_live(room))
 	else:
 		flash('You\'re not approved to join %s yet.' % roomname, 'info')
 		return redirect(url_for('chat'))

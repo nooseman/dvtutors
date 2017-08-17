@@ -6,6 +6,9 @@
 <body>
     <h1>You've entered room {{ room.roomname }}</h1>
 
+    {% if ttl < 5 %}
+        <h3>This room has less than 5 minutes left to live.</h3>
+    {% endif %}
 
 
     <br>
