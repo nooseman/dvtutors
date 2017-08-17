@@ -18,9 +18,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col">
-				<img src="{{ user.profile_picture(128) }}">
+				<img src="{{ user.profile_picture(256) }}" style="border-radius: 10%; ">
 			</div>
-			<div class="col">
+			<div class="col-5">
 				<h1 class="display-3">{{ user.nickname }}</h1>
 				{% if user.about_me %}
 					<p>{{ user.about_me }}</p>
