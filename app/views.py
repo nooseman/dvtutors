@@ -159,10 +159,11 @@ def oauth_callback(provider):
 		return redirect(url_for('home'))
 	oauth = OAuthSignIn.get_provider(provider)
 	social_id, username, email, auth_provider, profile_picture_url = oauth.callback()
+	user = User.query.filter_by(social_id=social_id).first()
+	
 	if social_id is None:
 		flash('Authentication failed.', 'danger')
 		return redirect(url_for('home'))
-		user = User.query.filter_by(social_id=social_id).first()
 	if not user:
 		nickname = User.make_unique_nickname(username)
 		user = User(social_id=social_id, nickname=nickname, email=email, auth_provider=auth_provider, profile_picture_url=profile_picture_url)
