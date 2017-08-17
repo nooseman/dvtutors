@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-	<h1> List of rooms that are active </h1>
+    <h1 class="text-center display-1">Active Rooms</h1>
+
+    <div class="list-group">
+        {% for room in rooms %}
+            <a href="{{ url_for('room', roomname=room.roomname) }}" class="list-group-item list-group-item-action">{{ room.roomname }}</a>
+        {% endfor %}
+    </div>
 
 	{% for room in rooms %}
 	<a href="/room/{{ room.roomname }}"> {{room.roomname}} </a> {% if not loop.last %}, {% endif %}
