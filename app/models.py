@@ -50,8 +50,7 @@ class Room(db.Model, UserMixin):
 	created_time = db.Column(db.DateTime, nullable=False)
 	password = db.Column(db.String(64), nullable=False)
 	approved_users = db.relationship('User', secondary = UserRoom, backref='Room', lazy='dynamic')
-	#active_users = db.relationship('User', secondary = UserRoom, backref='Room', lazy='dynamic')
-
+	
 	def __repr__(self):
 		return '<Room %r>' % (self.roomname)
 

@@ -78,9 +78,12 @@ def chat():
 		#create a list of all existing rooms with this roomname
 		room = Room.query.filter_by(roomname=form.roomname.data).first()
 
-		#the room doesn't exist yet, so make it and set its name and password to the given data
+		# the room doesn't exist yet, so make it and set its name
+		# and password to the given data
 		if room == None:
-			room = Room(roomname=form.roomname.data, password=form.roomkey.data, created_time=datetime.utcnow())
+			room = Room(roomname=form.roomname.data,
+						password=form.roomkey.data,
+						created_time=datetime.utcnow())
 
 			#delete room in 25 min
 			remove_room.apply_async(args=[room.roomname], countdown=1500)	
