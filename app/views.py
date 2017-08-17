@@ -77,7 +77,7 @@ def chat():
 	if form.validate_on_submit():
 		db.session.add(g.user)
 		
-		#create a list of all existing rooms with this roomname (hopefully only one)
+		#create a list of all existing rooms with this roomname
 		room = Room.query.filter_by(roomname=form.roomname.data).first()
 
 		#the room doesn't exist yet, so make it and set its name and password to the given data

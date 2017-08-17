@@ -1,8 +1,10 @@
 {% extends "base.html" %}
+{% import 'macros.html' as macros %}
 {% block content %}
 
 	<h1>Chat with another user!</h1>
 
+    <!--
 	<form action="" method="post" name="roomname">
 		{{ form.hidden_tag() }}
 		<p>
@@ -14,5 +16,11 @@
 		</p>
 		<p><input type="submit" name="Create/Join"></p>
 	</form>
+    -->
+
+    {% call macros.render_form(form, action_text='Join Room', class_='login-form') %}
+        {{ macros.render_field(form.roomname, label_visible=false, placeholder='Room Name', type='roomname')}}
+        {{ macros.render_field(form.roomkey, label_visible=true, placeholder='Room Password', type='roomkey') }}
+    {% endcall %}
 
 {% endblock %}
