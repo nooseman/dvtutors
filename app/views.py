@@ -14,9 +14,14 @@ def before_request():
 @app.route('/')
 @app.route('/home')
 def home():
-	return render_template('home.html',
-							title='Home',
-							user=g.user)
+
+	if current_user.is_authenticated:
+		return render_template('home.html',
+								title='Home',
+								user=g.user)
+	else:
+		return render_template('home_unauthorized.html',
+								title='Home')
 
 @app.route('/user/<nickname>')
 @login_required

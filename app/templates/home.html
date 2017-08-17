@@ -1,36 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 
-	{% if current_user.is_authenticated %}
-		<div class="jumbotron">
-			<h1 class="display-3">Ready to learn?</h1>
+	<div class="jumbotron">
+		<h1 class="display-3">Ready to learn?</h1>
 
-			<div class="container">
-				<div class="row">
-					<div class="col-4 col-md-4 col-lg-4" align="center">
-						<p></p>
-					</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-4 col-md-4 col-lg-4" align="center">
+					<p></p>
 				</div>
 			</div>
-
-			<!-- Something about which tutors are available with a link to a schedule meeting button or view available rooms -->
-			<p></p>
 		</div>
 
-	{% else %}
-		<div class="jumbotron">
-			<div class="container">
-				<h1 class="display-3">Ready to learn?</h1>
-				<p>We're here to help! DVTutors aims to help students improve their grades through one-on-one and group tutoring. Believe it or not, it's completely free!</p>
-				<p>Our tutors are knowledgeable in a variety of subjects ranging from high school English to multivariable calculus. To set up a tutoring session, 
-				please login.</p>
-
-				<a href="{{ url_for('login') }}">
-					<button type="button" class="btn btn-primary btn-lg">Login</button>
-				</a>
-			</div>
-		</div>
-	{% endif %}
+		<!-- Something about which tutors are available with a link to a schedule meeting button or view available rooms -->
+		<p></p>
+	</div>
 
 
 {% endblock %}
