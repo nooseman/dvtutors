@@ -2,16 +2,18 @@
 {% block content %}
     <h1 class="text-center display-1">Active Rooms</h1>
 
-    <div class="row">
-        <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+    <div class="container-fluid">
         <div class="row">
-            <div class="list-group jumbotron">
-                {% for room in rooms %}
-                    <a href="{{ url_for('room', roomname=room.roomname) }}" class="list-group-item list-group-item-action {% if room.password %} list-group-item-warning {% endif %}">{{ room.roomname }}</a>
-                {% endfor %}
+            <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+            <div class="col">
+                <div class="list-group jumbotron">
+                    {% for room in rooms %}
+                        <a href="{{ url_for('room', roomname=room.roomname) }}" class="list-group-item list-group-item-action {% if room.password %} list-group-item-warning {% endif %}">{{ room.roomname }}</a>
+                    {% endfor %}
+                </div>
             </div>
+            <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
         </div>
-        <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
     </div>
 
 	{% for room in rooms %}
