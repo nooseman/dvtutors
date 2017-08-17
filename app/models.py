@@ -14,14 +14,13 @@ class User(db.Model, UserMixin):
 	nickname = db.Column(db.String(128), nullable=False, unique=True)
 	email = db.Column(db.String(256), nullable=True)
 	about_me = db.Column(db.String(256), nullable=True)
+	classes = db.Column(db.String(256), nullable=True)
+	interests = db.Column(db.String(256), nullable=True)
 	profile_picture_url = db.Column(db.String(256), nullable=True)
-	
 	last_room_password = db.Column(db.String(64), nullable=True)
-
 	auth_provider = db.Column(db.String(256), nullable=False)
 	total_time_online = db.Column(db.DateTime, nullable=True)
-	#approved_rooms = db.relationship('Room', secondary = UserRoom, backref='User', lazy='dynamic')
-	approved_rooms = db.relationship('Room', secondary = UserRoom, lazy='dynamic')
+	approved_rooms = db.relationship('Room', secondary = UserRoom, backref='User', lazy='dynamic')
 
 	@staticmethod
 	def make_unique_nickname(nickname):
@@ -51,37 +50,10 @@ class Room(db.Model, UserMixin):
 	created_time = db.Column(db.DateTime, nullable=False)
 	password = db.Column(db.String(64), nullable=False)
 	approved_users = db.relationship('User', secondary = UserRoom, backref='Room', lazy='dynamic')
-	#active_users = db.relationship('User', secondary = UserRoom, backref='Room', lazy='dynamic')
-
+	
 	def __repr__(self):
 		return '<Room %r>' % (self.roomname)
 
-
-	'''
-	users can be in either, both, or neither of two possible states:
-
-	- in_room: user is currently in 'room/roomname'
-
-	- is_approved: user is allowed to be in 'room/roomname'
-
-	users who are not approved cannot be in a room (thus users in room must be approved)
-	'''
-	
-	'''
-	def enter_room(self, user):
-		if not self.in_room(user):
-			self.active_users.append(user)
-			return self
-
-	def exit_room(self, user):
-		if self.in_room(user):
-			self.active_users.remove(user)
-			return self
-
-	def in_room(self, user):
-		return self.active_users.filter(UserRoom.c.userId == user.id).count() > 0
-	'''
-	
 	def approve_user(self, user):
 		if not self.is_approved(user):
 			self.approved_users.append(user)

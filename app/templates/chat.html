@@ -1,18 +1,39 @@
 {% extends "base.html" %}
+{% import 'macros.html' as macros %}
 {% block content %}
 
-	<h1>Chat with another user!</h1>
+	<h1 class="text-center display-1">Chat with another user!</h1>
 
-	<form action="" method="post" name="roomname">
-		{{ form.hidden_tag() }}
-		<p>
-			Enter a roomname:<br>
-			{{ form.roomname(size=50) }}<br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
 
-			Enter a password or leave blank for open room:<br>
-			{{ form.roomkey }}<br>
-		</p>
-		<p><input type="submit" name="Create/Join"></p>
-	</form>
+            <div class="col jumbotron">
 
+                <h1 class="text-center display-5" style="padding-bottom: 10px">Chatroom Information</h1>
+
+                <div class="text-center">
+                    {% call macros.render_form(form, action_url='', action_text='Join Room', class_='login-form', btn_class='btn btn-primary btn-block') %}
+                        {{ macros.render_field(form.roomname, label_visible=false, placeholder='Room Name', type='roomname')}}
+                        {{ macros.render_field(form.roomkey, label_visible=false, placeholder='Room Password', type='roomkey') }}
+                    {% endcall %}
+                </div>
+            </div>
+
+            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+            
+            <div class="col jumbotron">
+                <h1 class="display-5">Using Chatrooms</h1>
+                <p>Creating a chatroom is easy! All you have to do is enter a room name (and a password if you'd like). Press
+                the Join Room button to create a new room or join an existing one with the info you've provided.</p>
+
+                <p>Alternatively, you can view a list of currently open rooms.</p>
+
+                <a href="{{ url_for('list') }}" class="btn btn-block btn-info" role="button">View Available Rooms</a>
+            </div>
+            
+            <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
+        </div>
+    </div>
+    
 {% endblock %}

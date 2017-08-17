@@ -34,8 +34,10 @@ Jinja2==2.9.6
 jmespath==0.9.3
 kombu==4.1.0
 MarkupSafe==1.0
+netifaces==0.10.6
 pathspec==0.5.0
 pbr==3.1.1
+profanityfilter==1.1.2
 psycopg2==2.7.3
 pycparser==2.18
 pyOpenSSL==17.1.0

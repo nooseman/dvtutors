@@ -5,8 +5,6 @@ from app.models import User, Room, UserRoom
 from app.oauth import OAuthSignIn
 from .forms import RoomForm, EditForm
 from datetime import datetime
-
-#celery tasks
 from .tasks import remove_room
 
 @app.before_request
@@ -16,9 +14,14 @@ def before_request():
 @app.route('/')
 @app.route('/home')
 def home():
-	return render_template('home.html',
-							title='Home',
-							user=g.user)
+
+	if current_user.is_authenticated:
+		return render_template('home.html',
+								title='Home',
+								user=g.user)
+	else:
+		return render_template('home_unauthorized.html',
+								title='Home')
 
 @app.route('/user/<nickname>')
 @login_required
@@ -40,7 +43,7 @@ def edit():
 		db.session.add(g.user)
 		db.session.commit()
 		flash('Changes have been saved.', 'success')
-		return redirect(url_for('user'), nickname=g.user.nickname)
+		return redirect(url_for('user', nickname=g.user.nickname))
 	else:
 		form.nickname.data = g.user.nickname
 		form.about_me.data = g.user.about_me
@@ -77,16 +80,24 @@ def chat():
 	if form.validate_on_submit():
 		db.session.add(g.user)
 		
-		#create a list of all existing rooms with this roomname (hopefully only one)
+		#create a list of all existing rooms with this roomname
 		room = Room.query.filter_by(roomname=form.roomname.data).first()
 
-		#the room doesn't exist yet, so make it and set its name and password to the given data
+		# the room doesn't exist yet, so make it and set its name
+		# and password to the given data
 		if room == None:
-			room = Room(roomname=form.roomname.data, password=form.roomkey.data, created_time=datetime.utcnow())
+			room = Room(roomname=form.roomname.data,
+						password=form.roomkey.data,
+						created_time=datetime.utcnow())
 
+<<<<<<< HEAD
 			#delete room in 14400s (4 hours)
 			#remove_room.apply_async(args=[room.roomname], countdown=14400)
 			remove_room.apply_async(args=[room.roomname], countdown=14400)	
+=======
+			#delete room in 25 min
+			remove_room.apply_async(args=[room.roomname], countdown=app.config['ROOM_TTL'])	
+>>>>>>> aab03302e208d957940f25b85cc88240b22bbd0f
 
 			db.session.add(room)
 		#the room does exist
@@ -106,18 +117,23 @@ def chat():
 @app.route('/list')
 @login_required
 def list():
-	rooms = Room.query.all()
-	return render_template('list.html', rooms=rooms)
+	if app.config['AVOID_ROOM_DATABASE_QUERIES']:
+		rooms = app.config['AVAILABLE_ROOMS']
+	else:
+		rooms = Room.query.all()
+
+	ages = []
+	for room in rooms:
+		ages.append(time_to_live(room))
+
+	return render_template('list.html', room_age=zip(rooms, ages), 
+							ttl=(app.config['ROOM_TTL']//60),
+							num_rooms=len(rooms))
 
 @app.route('/about')
 def about():
 	return render_template('about.html')
 
-'''
-TODO:
-
--cleanup
-'''
 @app.route('/room/<roomname>')
 @login_required
 def room(roomname):
@@ -127,9 +143,11 @@ def room(roomname):
 		return redirect(url_for('chat'))
 
 	if room.is_approved(g.user) or room.password == "":
+
 		return render_template('room.html',
 								title='Chat',
-								roomname=roomname)
+								room=room,
+								ttl=time_to_live(room))
 	else:
 		flash('You\'re not approved to join %s yet.' % roomname, 'info')
 		return redirect(url_for('chat'))
@@ -147,10 +165,11 @@ def oauth_callback(provider):
 		return redirect(url_for('home'))
 	oauth = OAuthSignIn.get_provider(provider)
 	social_id, username, email, auth_provider, profile_picture_url = oauth.callback()
+	user = User.query.filter_by(social_id=social_id).first()
+	
 	if social_id is None:
 		flash('Authentication failed.', 'danger')
 		return redirect(url_for('home'))
-	user = User.query.filter_by(social_id=social_id).first()
 	if not user:
 		nickname = User.make_unique_nickname(username)
 		user = User(social_id=social_id, nickname=nickname, email=email, auth_provider=auth_provider, profile_picture_url=profile_picture_url)
@@ -158,3 +177,8 @@ def oauth_callback(provider):
 		db.session.commit()
 	login_user(user, True)
 	return redirect(url_for('home'))
+
+def time_to_live(room, units='min'):
+	tdelta = datetime.utcnow() - room.created_time
+	conv = {'hr' : 3600, 'min' : 60, 'sec' : 1}
+	return (app.config['ROOM_TTL'] - tdelta.seconds) // conv[units]

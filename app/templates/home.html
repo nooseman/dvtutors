@@ -1,36 +1,36 @@
 {% extends "base.html" %}
 {% block content %}
 
-	{% if current_user.is_authenticated %}
-		<div class="jumbotron">
-			<h1 class="display-3">Ready to learn?</h1>
-
-			<div class="container">
-				<div class="row">
-					<div class="col-4 col-md-4 col-lg-4" align="center">
-						<p>Press "chat" above</p>
-					</div>
-				</div>
+	<div class="container">
+		<div class="row">
+			<div class="col jumbotron" align="center">
+					<h1 class="display-3">Let's get started!</h1>
 			</div>
-
-			<!-- Something about which tutors are available with a link to a schedule meeting button or view available rooms -->
-			<p></p>
+            <div class="col">
+                <div class="card">
+                    <div class="card-block text-center">
+                        <h3 class="card-title">Make a Chatroom</h3>
+                        <p class="card-text">Chatrooms have video chat and a collaborative whiteboard making them perfect for online tutoring!</p>
+                        <a href="{{ url_for('chat') }}" class="btn btn-info" role="button">Make a Room</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-block text-center">
+                        <h3 class="card-title">Join Your Friends</h3>
+                        <p class="card-text">View a list of all rooms currently open on DVTutors. If you know a room's password, you can join it!</p>
+                        <a href="{{ url_for('list') }}" class="btn btn-info" role="button">View Open Rooms</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-block text-center">
+                        <h3 class="card-title">Edit Your Profile</h3>
+                        <p class="card-text">Customizing your profile can make your experience on DVTutors more productive and enjoyable. Let us know what you want to study!</p>
+                        <a href="{{ url_for('edit') }}" class="btn btn-info" role="button">Edit Your Profile</a>
+                    </div>
+                </div>
+            </div>
 		</div>
-
-	{% else %}
-		<div class="jumbotron">
-			<div class="container">
-				<h1 class="display-3">Ready to learn?</h1>
-				<p>We're here to help! DVTutors aims to help students improve their grades through one-on-one and group tutoring. Believe it or not, it's completely free!</p>
-				<p>Our tutors are knowledgeable in a variety of subjects ranging from high school English to multivariable calculus. To set up a tutoring session, 
-				please login.</p>
-
-				<a href="{{ url_for('login') }}">
-					<button type="button" class="btn btn-primary btn-lg">Login</button>
-				</a>
-			</div>
-		</div>
-	{% endif %}
+	</div>
 
 
 {% endblock %}
