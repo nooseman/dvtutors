@@ -15,4 +15,8 @@ def remove_room(roomname):
 
 	return 'Room ' + roomname + ' deleted.'
 
+@celery.task()
+def update_available_rooms():
+    app.config['AVAILABLE_ROOMS'] = models.Room.query.all()
+    return 'Available room list updated'
 

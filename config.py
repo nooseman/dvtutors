@@ -31,3 +31,9 @@ if os.environ.get('DATABASE_URL') is None:
 else:
 	CELERY_BROKER_URL = os.environ['REDIS_URL']
 	CELERY_BACKEND = os.environ['REDIS_URL']
+
+
+# Optionally prevent users from querying database directly
+# by using a buffer variable
+AVOID_ROOM_DATABASE_QUERIES = True
+AVAILABLE_ROOMS = []

@@ -5,8 +5,6 @@ from app.models import User, Room, UserRoom
 from app.oauth import OAuthSignIn
 from .forms import RoomForm, EditForm
 from datetime import datetime
-
-#celery tasks
 from .tasks import remove_room
 
 @app.before_request
@@ -105,18 +103,17 @@ def chat():
 @app.route('/list')
 @login_required
 def list():
-	rooms = Room.query.all()
+	if app.config['AVOID_ROOM_DATABASE_QUERIES']:
+		rooms = app.config['AVAILABLE_ROOMS']
+	else:
+		rooms = Room.query.all()
+	
 	return render_template('list.html', rooms=rooms)
 
 @app.route('/about')
 def about():
 	return render_template('about.html')
 
-'''
-TODO:
-
--cleanup
-'''
 @app.route('/room/<roomname>')
 @login_required
 def room(roomname):
