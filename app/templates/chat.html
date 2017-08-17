@@ -9,7 +9,10 @@
             <div class="col-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
 
             <div class="col jumbotron">
-                {% call macros.render_form(form, action_url='', action_text='Join Room', class_='login-form') %}
+
+                <h1 class="text-center display-5">Chatroom Information</h1>
+
+                {% call macros.render_form(form, action_url='', action_text='Join Room', class_='login-form', btn_class='btn btn-primary') %}
                     {{ macros.render_field(form.roomname, label_visible=false, placeholder='Room Name', type='roomname')}}
                     {{ macros.render_field(form.roomkey, label_visible=false, placeholder='Room Password', type='roomkey') }}
                 {% endcall %}
