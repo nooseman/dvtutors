@@ -3,6 +3,9 @@
     <h1 class="text-center display-1">Active Rooms</h1>
 
     <div class="container-fluid">
+
+        <h2>Click on any room to join it. Note that rooms labeled in yellow are password protected.</h2>
+
         <div class="row">
             <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
             <div class="col jumbotron">
@@ -15,9 +18,4 @@
             <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
         </div>
     </div>
-
-	{% for room in rooms %}
-	<a href="/room/{{ room.roomname }}"> {{room.roomname}} </a> {% if not loop.last %}, {% endif %}
-	{% endfor %}
-
 {% endblock %}
