@@ -4,7 +4,7 @@
 
     <div class="list-group">
         {% for room in rooms %}
-            <a href="{{ url_for('room', roomname=room.roomname) }}" class="list-group-item list-group-item-action">{{ room.roomname }}</a>
+            <a href="{{ url_for('room', roomname=room.roomname) }}" class="list-group-item list-group-item-action {{% if room.password %} list-group-item-warning {% endif %}">{{ room.roomname }}</a>
         {% endfor %}
     </div>
 
