@@ -15,20 +15,24 @@
 	<hr>
 	-->
 
-	<div class="container text-center">
-		<div class="row">
-			<div class="col-4">
-				<img src="{{ user.profile_picture(256) }}" style="border-radius: 10%; ">
-			</div>
-			<div class="col-5">
-				<h1 class="display-3">{{ user.nickname }}</h1>
-				{% if user.about_me %}
-					<p>{{ user.about_me }}</p>
-				{% endif %}
+	<div class="container">
+		<div class="card">
+			<div class="card-header">{{ user.nickname }}</div>
+			<div class="card-block">
+				<div class="row">
+					<div class="col">
+						<img src="{{ user.profile_picture(64) }}">
+					</div>
+					<div class="col">
+						{% if user.about_me %}
+							<p>{{ user.about_me }}</p>
+						{% endif %}
 
-				{% if user.id == g.user.id %}
-					<a href="{{ url_for('edit') }}" class="btn btn-success" role="button">Edit Profile</a>
-				{% endif %}
+						{% if user.id == g.user.id %}
+							<a href="{{ url_for('edit') }}" class="btn btn-success" role="button">Edit Profile</a>
+						{% endif %}
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
