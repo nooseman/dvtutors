@@ -35,5 +35,5 @@ else:
 
 # Optionally prevent users from querying database directly
 # by using a buffer variable
-AVOID_ROOM_DATABASE_QUERIES = True
+AVOID_ROOM_DATABASE_QUERIES = False
 AVAILABLE_ROOMS = []
