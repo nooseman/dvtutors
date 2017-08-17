@@ -30,7 +30,6 @@ celery.conf.update(app.config)
 from app import views, models, tasks
 from app.models import User
 
-
 if app.config['AVOID_ROOM_DATABASE_QUERIES']:
     celery.conf.beat_schedule = {
         'update-available-room-list': {
@@ -38,6 +37,7 @@ if app.config['AVOID_ROOM_DATABASE_QUERIES']:
             'schedule': 
         }
     }
+    celery.conf.timezone = 'UTC'
 
 @lm.user_loader
 def load_user(id):
