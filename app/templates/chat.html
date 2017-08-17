@@ -4,23 +4,25 @@
 
 	<h1>Chat with another user!</h1>
 
-    <!--
-	<form action="" method="post" name="roomname">
-		{{ form.hidden_tag() }}
-		<p>
-			Enter a roomname:<br>
-			{{ form.roomname(size=50) }}<br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col jumbotron">
+                {% call macros.render_form(form, action_url='', action_text='Join Room', class_='login-form') %}
+                    {{ macros.render_field(form.roomname, label_visible=false, placeholder='Room Name', type='roomname')}}
+                    {{ macros.render_field(form.roomkey, label_visible=false, placeholder='Room Password', type='roomkey') }}
+                {% endcall %}
+            </div>
+            <div class="col jumbotron">
+                <h1 class="display-3">Using Chatrooms</h1>
+                <div class="inline-block">
+                    <p>Creating a chatroom is easy! All you have to do is enter a room name (and a password if you'd like). Press the </p>
+                    <button class="btn btn-default">Join Room</button>
+                    <p> button to create a new room or join an existing one with the provided credentials.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-			Enter a password or leave blank for open room:<br>
-			{{ form.roomkey }}<br>
-		</p>
-		<p><input type="submit" name="Create/Join"></p>
-	</form>
-    -->
-
-    {% call macros.render_form(form, action_url='', action_text='Join Room', class_='login-form') %}
-        {{ macros.render_field(form.roomname, label_visible=false, placeholder='Room Name', type='roomname')}}
-        {{ macros.render_field(form.roomkey, label_visible=false, placeholder='Room Password', type='roomkey') }}
-    {% endcall %}
+    
 
 {% endblock %}
