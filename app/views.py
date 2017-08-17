@@ -119,7 +119,7 @@ def list():
 		ages.append(app.config['ROOM_TTL'] - tdelta.seconds // 60)
 	
 	#return render_template('list.html', rooms=rooms, ages=ages)
-	return render_template('list.html', room_age=zip(rooms, ages))
+	return render_template('list.html', room_age=zip(rooms, ages), ttl=(app.config['ROOM_TTL']//60))
 
 @app.route('/about')
 def about():
