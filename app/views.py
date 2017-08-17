@@ -86,7 +86,7 @@ def chat():
 						created_time=datetime.utcnow())
 
 			#delete room in 25 min
-			remove_room.apply_async(args=[room.roomname], countdown=1500)	
+			remove_room.apply_async(args=[room.roomname], countdown=app.config['ROOM_TTL'])	
 
 			db.session.add(room)
 		#the room does exist
@@ -113,9 +113,10 @@ def list():
 
 	ages = []
 
+	# time to live counters for each room
 	for room in rooms:
 		tdelta = datetime.utcnow() - room.created_time
-		ages.append(25 - tdelta.seconds // 60)
+		ages.append(app.config['ROOM_TTL'] - tdelta.seconds // 60)
 	
 	#return render_template('list.html', rooms=rooms, ages=ages)
 	return render_template('list.html', room_age=zip(rooms, ages))
