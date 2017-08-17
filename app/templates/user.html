@@ -16,25 +16,22 @@
 	-->
 
 	<div class="container">
-		<div class="card">
-			<div class="card-header">{{ user.nickname }}</div>
-			<div class="card-block">
-				<div class="row">
-					<div class="col inline-block">
-						<img src="{{ user.profile_picture(128) }}" style="border-radius: 10%;">
-						
-						{% if user.about_me %}
-							<p>{{ user.about_me }}</p>
-						{% endif %}						
-					</div>
-					<div class="col">
-						{% if user.id == g.user.id %}
-							<a href="{{ url_for('edit') }}" class="btn btn-success" role="button">Edit Profile</a>
-						{% endif %}
-					</div>
-				</div>
+		<div class="row">
+			<div class="col-3 col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+				<img src="{{ user.profile_picture(128) }}" style="border-radius: 10%; ">
 			</div>
-		</div>
+			<div class="col-3 col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+				<h3>{{ user.nickname }}</h3>
+
+				{% if user.about_me %}
+					<p>{{ user.about_me }}</p>
+				{% endif %}
+
+				{% if user.id == g.user.id %}
+					<a href="{{ url_for('edit') }}" class="btn btn-success" role="button">Edit Profile</a>
+				{% endif %}
+			</div>
+		</div>		
 	</div>
 
 {% endblock %}
