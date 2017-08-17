@@ -23,12 +23,11 @@
 					<div class="col inline-block">
 						<img src="{{ user.profile_picture(128) }}" style="border-radius: 10%;">
 						
-						% if user.about_me %}
+						{% if user.about_me %}
 							<p>{{ user.about_me }}</p>
 						{% endif %}						
 					</div>
 					<div class="col">
-						{
 						{% if user.id == g.user.id %}
 							<a href="{{ url_for('edit') }}" class="btn btn-success" role="button">Edit Profile</a>
 						{% endif %}
