@@ -14,10 +14,10 @@ class User(db.Model, UserMixin):
 	nickname = db.Column(db.String(128), nullable=False, unique=True)
 	email = db.Column(db.String(256), nullable=True)
 	about_me = db.Column(db.String(256), nullable=True)
+	classes = db.Column(db.String(256), nullable=True)
+	interests = db.Column(db.String(256), nullable=True)
 	profile_picture_url = db.Column(db.String(256), nullable=True)
-	
 	last_room_password = db.Column(db.String(64), nullable=True)
-
 	auth_provider = db.Column(db.String(256), nullable=False)
 	total_time_online = db.Column(db.DateTime, nullable=True)
 	approved_rooms = db.relationship('Room', secondary = UserRoom, backref='User', lazy='dynamic')

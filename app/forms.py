@@ -1,6 +1,7 @@
 from flask_wtf import Form
-from wtforms import StringField, BooleanField, TextAreaField
+from wtforms import StringField, BooleanField, TextAreaField, SelectField
 from wtforms.validators import DataRequired, Length
+import app
 from app.models import User
 import profanityfilter
 
@@ -22,6 +23,10 @@ class EditForm(Form):
 		if user != None:
 			self.nickname.errors.append('This name is taken. Try again.')
 			return False
+		if profanityfilter.is_profane(self.nickname.data):
+			self.nickname.errors.append('This name is not allowed. Try again.')
+			return False
+
 		return True
 
 class RoomForm(Form):
