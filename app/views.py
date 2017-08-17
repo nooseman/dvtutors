@@ -119,9 +119,10 @@ def list():
 	ages = []
 	# time to live counters for each room
 	for room in rooms:
-		tdelta = datetime.utcnow() - room.created_time
-		ages.append((app.config['ROOM_TTL'] - tdelta.seconds) // 60)
-	
+		#tdelta = datetime.utcnow() - room.created_time
+		#ages.append((app.config['ROOM_TTL'] - tdelta.seconds) // 60)
+		ages.append(time_to_live(room))
+
 	return render_template('list.html', room_age=zip(rooms, ages), 
 							ttl=(app.config['ROOM_TTL']//60),
 							num_rooms=len(rooms))
@@ -139,9 +140,10 @@ def room(roomname):
 		return redirect(url_for('chat'))
 
 	if room.is_approved(g.user) or room.password == "":
+
 		return render_template('room.html',
 								title='Chat',
-								roomname=roomname)
+								room=room)
 	else:
 		flash('You\'re not approved to join %s yet.' % roomname, 'info')
 		return redirect(url_for('chat'))
@@ -170,3 +172,14 @@ def oauth_callback(provider):
 		db.session.commit()
 	login_user(user, True)
 	return redirect(url_for('home'))
+
+def time_to_live(room, units='min'):
+	tdelta = datetime.utcnow() - room.created_time
+
+	conv = {
+		'hr' : 3600
+		'min' : 60,
+		'sec' : 1
+	}
+
+	return (app.config['ROOM_TTL'] - tdelta) // conv[units]
