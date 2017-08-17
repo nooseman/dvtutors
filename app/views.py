@@ -115,7 +115,7 @@ def list():
 
 	for room in rooms:
 		tdelta = datetime.utcnow() - room.created_time
-		ages.append(ages.seconds // 60)
+		ages.append(tdelta.seconds // 60)
 	
 	#return render_template('list.html', rooms=rooms, ages=ages)
 	return render_template('list.html', room_age=zip(rooms, ages))
