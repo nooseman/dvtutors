@@ -174,5 +174,6 @@ def oauth_callback(provider):
 	return redirect(url_for('home'))
 
 def time_to_live(room, units='min'):
+	tdelta = datetime.utcnow() - room.created_time
 	conv = {'hr' : 3600, 'min' : 60, 'sec' : 1}
-	return (app.config['ROOM_TTL'] - (datetime.utcnow() - room.created_time)) // conv[units]
+	return (app.config['ROOM_TTL'] - tdelta.seconds) // conv[units]
