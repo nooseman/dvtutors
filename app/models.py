@@ -55,32 +55,6 @@ class Room(db.Model, UserMixin):
 	def __repr__(self):
 		return '<Room %r>' % (self.roomname)
 
-
-	'''
-	users can be in either, both, or neither of two possible states:
-
-	- in_room: user is currently in 'room/roomname'
-
-	- is_approved: user is allowed to be in 'room/roomname'
-
-	users who are not approved cannot be in a room (thus users in room must be approved)
-	'''
-	
-	'''
-	def enter_room(self, user):
-		if not self.in_room(user):
-			self.active_users.append(user)
-			return self
-
-	def exit_room(self, user):
-		if self.in_room(user):
-			self.active_users.remove(user)
-			return self
-
-	def in_room(self, user):
-		return self.active_users.filter(UserRoom.c.userId == user.id).count() > 0
-	'''
-	
 	def approve_user(self, user):
 		if not self.is_approved(user):
 			self.approved_users.append(user)
