@@ -43,7 +43,7 @@ def edit():
 		db.session.add(g.user)
 		db.session.commit()
 		flash('Changes have been saved.', 'success')
-		return redirect(url_for('user'), nickname=g.user.nickname)
+		return redirect(url_for('user', nickname=g.user.nickname))
 	else:
 		form.nickname.data = g.user.nickname
 		form.about_me.data = g.user.about_me
