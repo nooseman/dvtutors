@@ -34,7 +34,7 @@ if app.config['AVOID_ROOM_DATABASE_QUERIES']:
     celery.conf.beat_schedule = {
         'update-available-room-list': {
             'task' : 'tasks.update_available_rooms',
-            'schedule': 
+            'schedule': 30.0
         }
     }
     celery.conf.timezone = 'UTC'
