@@ -110,8 +110,15 @@ def list():
 		rooms = app.config['AVAILABLE_ROOMS']
 	else:
 		rooms = Room.query.all()
+
+	ages = []
+
+	for room in rooms:
+		tdelta = timedelta.utcnow() - room.created_time
+		ages.append(ages.seconds // 60)
 	
-	return render_template('list.html', rooms=rooms)
+	#return render_template('list.html', rooms=rooms, ages=ages)
+	return render_template('list.html', room_age=zip(rooms, ages))
 
 @app.route('/about')
 def about():
