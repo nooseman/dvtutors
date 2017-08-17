@@ -8,16 +8,9 @@
             <div class="col jumbotron">
                 <p class="text-center">Click on any room to join it. Note that rooms labeled in yellow are password protected.</p>
                 <div class="list-group">
-                    <!--
-                    {% for room in rooms %}
-                        <a href="{{ url_for('room', roomname=room.roomname) }}" class="list-group-item list-group-item-action {% if room.password %} list-group-item-warning {% endif %}">{{ room.roomname }} <p class="small">{{ (datetime.utcnow() - room.created_time).seconds/60 }}c</p></a>
-                    {% endfor %}
-                    -->
-
                     {% for room, age in room_age %}
-                        <a href="{{ url_for('room', roomname=room.roomname) }}" class="list-group-item list-group-item-action {% if room.password %} list-group-item-warning {% endif %}">{{ room.roomname }}<p class="small">{{ age }}</p></a>
+                        <a href="{{ url_for('room', roomname=room.roomname) }}" class="list-group-item list-group-item-action justify-content-between {% if room.password %} list-group-item-warning {% endif %}">{{ room.roomname }}<span class="badge badge-pill {%if age <= 5 %} badge-warning {% endif %}">{{ age }}</span></a>
                     {% endfor %}
-
                 </div>
             </div>
             <div class="col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xl-1"></div>
