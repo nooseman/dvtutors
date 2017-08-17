@@ -116,14 +116,17 @@ def list():
 	else:
 		rooms = Room.query.all()
 
-	ages = []
+	ages = map(lambda room: (app.config['ROOM_TTL'] - datetime.utcnow() +
+	room.created_time ) // 60, rooms)
 
+	'''
+	ages = []
 	# time to live counters for each room
 	for room in rooms:
 		tdelta = datetime.utcnow() - room.created_time
 		ages.append((app.config['ROOM_TTL'] - tdelta.seconds) // 60)
-
-	#return render_template('list.html', rooms=rooms, ages=ages)
+	'''
+	
 	return render_template('list.html', room_age=zip(rooms, ages), ttl=(app.config['ROOM_TTL']//60))
 
 @app.route('/about')
