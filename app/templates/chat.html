@@ -18,9 +18,9 @@
 	</form>
     -->
 
-    {% call macros.render_form(form, action_text='Join Room', class_='login-form') %}
+    {% call macros.render_form(form, action_url='', action_text='Join Room', class_='login-form') %}
         {{ macros.render_field(form.roomname, label_visible=false, placeholder='Room Name', type='roomname')}}
-        {{ macros.render_field(form.roomkey, label_visible=true, placeholder='Room Password', type='roomkey') }}
+        {{ macros.render_field(form.roomkey, label_visible=false, placeholder='Room Password', type='roomkey') }}
     {% endcall %}
 
 {% endblock %}
