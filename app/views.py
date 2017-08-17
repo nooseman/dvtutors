@@ -164,7 +164,7 @@ def oauth_callback(provider):
 	if social_id is None:
 		flash('Authentication failed.', 'danger')
 		return redirect(url_for('home'))
-	user = User.query.filter_by(social_id=social_id).first()
+		user = User.query.filter_by(social_id=social_id).first()
 	if not user:
 		nickname = User.make_unique_nickname(username)
 		user = User(social_id=social_id, nickname=nickname, email=email, auth_provider=auth_provider, profile_picture_url=profile_picture_url)
@@ -177,7 +177,7 @@ def time_to_live(room, units='min'):
 	tdelta = datetime.utcnow() - room.created_time
 
 	conv = {
-		'hr' : 3600
+		'hr' : 3600,
 		'min' : 60,
 		'sec' : 1
 	}
