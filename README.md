@@ -16,3 +16,4 @@
 8. Add a link that will be possible to look at the user's information(user/username). This page will be public so that anyone can see it.
 9. Make a memo.html which the user can make a memo. This will be a private page that only the owner can see.
 10. make a url when mobile phone access it.
+11. Fix the part that the room with the password can be entered easily with the Avaliable rooms page(/list.html)
