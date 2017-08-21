@@ -15,3 +15,4 @@
 7. Can't understand user.html. (Need to improve the edit.html part to input more information)
 8. Add a link that will be possible to look at the user's information(user/username). This page will be public so that anyone can see it.
 9. Make a memo.html which the user can make a memo. This will be a private page that only the owner can see.
+10. make a url when mobile phone access it.
