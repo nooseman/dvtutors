@@ -14,5 +14,5 @@
 6. Make topic rooms such as 'math', 'physics' etc. so that people who have questions on that topic could go in easily
 8. Add a link that will be possible to look at the user's information(user/username). This page will be public so that anyone can see it.
 9. Make a memo.html which the user can make a memo. This will be a private page that only the owner can see.
-10. make a url when mobile phone access it.
+10. make a url when mobile phone access it. (https://www.w3schools.com/cssref/css3_pr_mediaquery.asp)
 11. Fix the part that the room with the password can be entered easily with the Avaliable rooms page(/list.html)
