@@ -14,7 +14,6 @@ def before_request():
 @app.route('/')
 @app.route('/home')
 def home():
-
 	if current_user.is_authenticated:
 		return render_template('home.html',
 								title='Home',
