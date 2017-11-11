@@ -17,4 +17,4 @@
 9. Make a memo.html which the user can make a memo. This will be a private page that only the owner can see.
 10. make a url when mobile phone access it. (https://www.w3schools.com/cssref/css3_pr_mediaquery.asp)
 11. Fix the part that the room with the password can be entered easily with the Avaliable rooms page(/list.html)
-12. Testing of the atom editor for github
+12. Testing of the atom editor for Github
